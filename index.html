@@ -9,7 +9,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #f9f9f9;
@@ -20,7 +20,7 @@
             --secondary-bg: #f9f9f9;
             --text-secondary: #666;
             --accent-color: #ff6b6b;
-            --shadow-color: rgba(0, 0, 0, 0.1);
+            --shadow-color | rgba(0, 0, 0, 0.1);
             --form-border: #ddd;
             --progress-bg: #f1f1f1;
             --footer-bg: #333;
@@ -512,7 +512,7 @@
             left: 0;
             height: 100%;
             background: var(--accent-color);
-            border-radius: 5px;
+            border-radius:  молодой
             transition: width 1.5s ease-in-out;
         }
         
@@ -722,7 +722,138 @@
         .project-links a:hover {
             color: #ff5252;
         }
-        
+
+        /* Graphic Design Section */
+        .graphic-design {
+            padding: 100px 0;
+            background-color: var(--section-bg);
+            position: relative;
+        }
+
+        .graphic-design-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .graphic-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            background: var(--card-bg);
+            cursor: pointer;
+        }
+
+        .graphic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow-color);
+        }
+
+        .graphic-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .graphic-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1;
+        }
+
+        .graphic-card:hover .graphic-img::before {
+            opacity: 1;
+        }
+
+        .graphic-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .graphic-card:hover .graphic-img img {
+            transform: scale(1.1);
+        }
+
+        .graphic-category {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .graphic-card:hover .graphic-category {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: #ff5252;
+            transform: scale(1.1);
+        }
+
         /* Contact Section */
         .contact {
             padding: 100px 0;
@@ -953,7 +1084,8 @@
                 margin-bottom: 40px;
             }
             
-            .projects-container {
+            .projects-container,
+            .graphic-design-container {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
         }
@@ -974,6 +1106,11 @@
             .section-title::before {
                 font-size: 60px;
             }
+
+            .lightbox-img {
+                max-width: 95%;
+                max-height: 80vh;
+            }
         }
     </style>
 </head>
@@ -989,6 +1126,7 @@
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#tools">Tools</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#graphic-design">Graphic Design</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><button class="theme-toggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button></li>
                 </ul>
@@ -1121,14 +1259,14 @@
                 </div>
 
                 <div class="skill-box" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="900">
-                <i class="fas fa-paint-brush"></i>
-                <h3>Graphic Design</h3>
-                <p>Designing visually appealing graphics and UI elements using tools like Photoshop and Illustrator.</p>
-                <div class="skill-progress">
-                    <span style="width: 0%;" data-width="83%"></span>
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Graphic Design</h3>
+                    <p>Designing visually appealing graphics and UI elements using tools like Photoshop and Illustrator.</p>
+                    <div class="skill-progress">
+                        <span style="width: 0%;" data-width="83%"></span>
+                    </div>
+                    <div class="skill-percent">83%</div>
                 </div>
-                <div class="skill-percent">83%</div>
-            </div>
                 
             </div>   
         </div>
@@ -1182,174 +1320,275 @@
                     <h3>Illustrator</h3>
                     <p>Vector graphics and illustrations</p>
                 </div>
-
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up" data-text="PROJECTS">
-                <h2>My Projects</h2>
             </div>
-            <div class="projects-container">
-                <div class="project-card" data-aos="flip-left" data-aos-duration="1000">
-                    <div class="project-img">
-                        <img src="https://scontent.fpnh24-1.fna.fbcdn.net/v/t39.30808-6/499250547_723496800070096_6227418431597723453_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=2rcbh16b28cQ7kNvwG1sqc-&_nc_oc=Adny-gTsK3jhe32HX5f7Wd58DhXHFQAxG4vy1yDo8yIAqiIrEMSjFA5IEz0Ce0vRKoM&_nc_zt=23&_nc_ht=scontent.fpnh24-1.fna&_nc_gid=jR5pYgACizAn44oh90mcbA&oh=00_AfLiw3kORpB0E1YD4DAHFoCQ2LrncBppK1dsm5SC8X4pvA&oe=683001EE" alt="Project 1">
-                        <div class="project-category">E-commerce</div>
-                    </div>
-                    <div class="project-info">
-                        <h3>E-commerce Website</h3>
-                        <p>A fully responsive e-commerce website with product filtering, cart functionality, and payment integration.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/Yangchanthorony/ecommerce-shop/tree/main/web_front_project/project"><i class="fab fa-github"></i> GitHub</a>
-                        </div>
-                    </div>
-                </div>
+        </section>
 
-                <div class="project-card" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="200">
-                    <div class="project-img">
-                        <img src="https://scontent.fpnh24-1.fna.fbcdn.net/v/t39.30808-6/499945163_723496790070097_9210228740917777020_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=MHWW3EIiyCAQ7kNvwFl1yri&_nc_oc=AdmmFMmsIKQd4of3RB9V1ghmrbd_UmnmLR8WO9MQN0vFtKCvtYa-zdsWS1j1UKJDMxE&_nc_zt=23&_nc_ht=scontent.fpnh24-1.fna&_nc_gid=366-2h70Vhcag0_eJTKDAA&oh=00_AfKWr1fLI5v4GHOjAlxQcn6kC6uFIxPnd2IjCpN3b0UKHQ&oe=68301086" alt="Project 2">
-                        <div class="project-category">University</div>
-                    </div>
-                    <div class="project-info">
-                        <h3>University Website</h3>
-                        <p>A creative University website for a user watch and contact form functionality.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/Yangchanthorony/Project_new"><i class="fab fa-github"></i> GitHub</a>
-                        </div>
-                    </div>
+        <!-- Projects Section -->
+        <section class="projects" id="projects">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up" data-text="PROJECTS">
+                    <h2>My Projects</h2>
                 </div>
+                <div class="projects-container">
+                    <div class="project-card" data-aos="flip-left" data-aos-duration="1000">
+                        <div class="project-img">
+                            <img src="https://scontent.fpnh24-1.fna.fbcdn.net/v/t39.30808-6/499250547_723496800070096_6227418431597723453_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=2rcbh16b28cQ7kNvwG1sqc-&_nc_oc=Adny-gTsK3jhe32HX5f7Wd58DhXHFQAxG4vy1yDo8yIAqiIrEMSjFA5IEz0Ce0vRKoM&_nc_zt=23&_nc_ht=scontent.fpnh24-1.fna&_nc_gid=jR5pYgACizAn44oh90mcbA&oh=00_AfLiw3kORpB0E1YD4DAHFoCQ2LrncBppK1dsm5SC8X4pvA&oe=683001EE" alt="Project 1">
+                            <div class="project-category">E-commerce</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>E-commerce Website</h3>
+                            <p>A fully responsive e-commerce website with product filtering, cart functionality, and payment integration.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Yangchanthorony/ecommerce-shop/tree/main/web_front_project/project"><i class="fab fa-github"></i> GitHub</a>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="project-card" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="400">
-                    <div class="project-img">
-                        <img src="https://scontent.fpnh24-1.fna.fbcdn.net/v/t39.30808-6/499876485_723496766736766_5478402629023811671_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=N-Nb0uqtH44Q7kNvwFPWTQk&_nc_oc=Adk6WjFY8CXRVTRlcxSJdrh7RhT0b69-mYoeWU4dBdc7ZI8OOekOcT4W0pt61Sc3T2o&_nc_zt=23&_nc_ht=scontent.fpnh24-1.fna&_nc_gid=B0r3MMcsen7fdXIvHppYwg&oh=00_AfJIVIDRBRVWVk5P6vDlqEVkizu_BsXpOJpBtvAkRWFKTA&oe=682FFCE8" alt="Project 3">
-                        <div class="project-category">Web App</div>
-                    </div>
-                    <div class="project-info">
-                        <h3>School Management </h3>
-                        <p>A React-based School Management application with drag-and-drop functionality and user authentication.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/Yangchanthorony/school-management"><i class="fab fa-github"></i> GitHub</a>
+                    <div class="project-card" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="200">
+                        <div class="project-img">
+                            <img src="https://scontent.fpnh24-1.fna.fbcdn.net/v/t39.30808-6/499945163_723496790070097_9210228740917777020_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=MHWW3EIiyCAQ7kNvwFl1yri&_nc_oc=AdmmFMmsIKQd4of3RB9V1ghmrbd_UmnmLR8WO9MQN0vFtKCvtYa-zdsWS1j1UKJDMxE&_nc_zt=23&_nc_ht=scontent.fpnh24-1.fna&_nc_gid=366-2h70Vhcag0_eJTKDAA&oh=00_AfKWr1fLI5v4GHOjAlxQcn6kC6uFIxPnd2IjCpN3b0UKHQ&oe=68301086" alt="Project 2">
+                            <div class="project-category">University</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>University Website</h3>
+                            <p>A creative University website for a user watch and contact form functionality.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Yangchanthorony/Project_new"><i class="fab fa-github"></i> GitHub</a>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up" data-text="CONTACT">
-                <h2>Contact Me</h2>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info" data-aos="fade-right" data-aos-duration="1000">
-                    <h3>Get In Touch</h3>
-                    <p>Feel free to contact me for any work or suggestions. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
-                    <div class="contact-details">
-                        <div>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Phnom Penh, Cambodia</span>
+                    <div class="project-card" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="400">
+                        <div class="project-img">
+                            <img src="https://scontent.fpnh24-1.fna.fbcdn.net/v/t39.30808-6/499876485_723496766736766_5478402629023811671_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=N-Nb0uqtH44Q7kNvwFPWTQk&_nc_oc=Adk6WjFY8CXRVTRlcxSJdrh7RhT0b69-mYoeWU4dBdc7ZI8OOekOcT4W0pt61Sc3T2o&_nc_zt=23&_nc_ht=scontent.fpnh24-1.fna&_nc_gid=B0r3MMcsen7fdXIvHppYwg&oh=00_AfJIVIDRBRVWVk5P6vDlqEVkizu_BsXpOJpBtvAkRWFKTA&oe=682FFCE8" alt="Project 3">
+                            <div class="project-category">Web App</div>
                         </div>
-                        <div>
-                            <i class="fas fa-envelope"></i>
-                            <span>tonyja2460@gmail.com</span>
-                        </div>
-                        <div>
-                            <i class="fas fa-phone"></i>
-                            <span>+855 15 811 660</span>
+                        <div class="project-info">
+                            <h3>School Management </h3>
+                            <p>A React-based School Management application with drag-and-drop functionality and user authentication.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Yangchanthorony/school-management"><i class="fab fa-github"></i> GitHub</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="https://github.com/Yangchanthorony/project"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-                <div class="contact-form" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>© 2024 My Portfolio. All Rights Reserved.</p>
-        </div>
-    </footer>
+        <!-- Graphic Design Section -->
+        <section class="graphic-design" id="graphic-design">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up" data-text="GRAPHIC DESIGN">
+                    <h2>Graphic Design Portfolio</h2>
+                </div>
+                <div class="graphic-design-container">
+                    <!-- Card 1 -->
+                    <div class="graphic-card" data-aos="flip-right" data-aos-duration="1000">
+                        <div class="graphic-img">
+                            <img src="https://scontent.fpnh24-1.fna.fbcdn.net/v/t39.30808-6/499154583_723685083384601_139581733945361034_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=-hi0DS-YemEQ7kNvwGHYNgZ&_nc_oc=Adln1KRYf7pOip902weTe6Dihe0CCSkEFkAWbY_1LLV0lm5YLS8w9i5We-j1F8dj7yA&_nc_zt=23&_nc_ht=scontent.fpnh24-1.fna&_nc_gid=9Nt830f3z_R3_TFwgoFfdA&oh=00_AfJ3_KZYo0ObiH7UTXGJYWBXNlPQwJ-JbgEccW8wCOR_Ow&oe=68305AF7" alt="Poster Design">
+                            <div class="graphic-category">Poster</div>
+                        </div>
+                    </div>
 
-    <!-- AOS JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            once: false,
-            mirror: true,
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+                    <!-- Card 2 -->
+                    <div class="graphic-card" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
+                        <div class="graphic-img">
+                            <img src="https://scontent.fpnh24-1.fna.fbcdn.net/v/t39.30808-6/499995439_723685030051273_5723899575605403720_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=JatdYXGrO3sQ7kNvwGFN2Jk&_nc_oc=Adk4VL1Ozi_MXwMel3-CPdJyCN75NRN0He5TkL0aZGKSEuipSC_Vj1B3iDOV73u9WhQ&_nc_zt=23&_nc_ht=scontent.fpnh24-1.fna&_nc_gid=kDzfGnts8e1dB-KnDFZBow&oh=00_AfI0KculmrWPWtC30fWOt0z4HhIcVvpE7PHMt3_UbQGShg&oe=68308038" alt="Poster Design">
+                            <div class="graphic-category">Poster</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="graphic-card" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="200">
+                        <div class="graphic-img">
+                            <img src="https://scontent.fpnh24-1.fna.fbcdn.net/v/t39.30808-6/498588186_723685026717940_6274978023332093591_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=CvZXA8GlwtQQ7kNvwGKr9W0&_nc_oc=AdnM95nSpz_1IhnWVsWGApFeH0OJIJoT0Jfs1VHUT0CVLEiCgEVvvweEUhl_GF4S5GI&_nc_zt=23&_nc_ht=scontent.fpnh24-1.fna&_nc_gid=Ush3gU6RTotiuxlPkhLyuA&oh=00_AfJV10ktsXL-Es9YxwLuDQn06Uw63xrKZvSydTeoLGNIow&oe=68305FE5" alt="Poster Design">
+                            <div class="graphic-category">Poster</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="graphic-card" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
+                        <div class="graphic-img">
+                            <img src="https://scontent.fpnh24-1.fna.fbcdn.net/v/t39.30808-6/499894045_723685056717937_8123212759294589040_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=9VPgyRG4rnYQ7kNvwGXrLE6&_nc_oc=AdnXoYZJ6b62574PCaZ2ofzVBLcsdgjHarewmWAjog79HqL9GHxQ8wzZac6z2vAVSx0&_nc_zt=23&_nc_ht=scontent.fpnh24-1.fna&_nc_gid=PYZsozdIGcJeYWoOiVAq-A&oh=00_AfJE90dWcIx7dho5hk108-xSTcAdUhaW6khjXtKd3imI_g&oe=68306F14" alt="Poster Design">
+                            <div class="graphic-category">Poster</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="graphic-card" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="400">
+                        <div class="graphic-img">
+                            <img src="https://scontent.fpnh24-1.fna.fbcdn.net/v/t39.30808-6/498598846_723685023384607_7629601978731563112_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Ih7wCWZ_90YQ7kNvwHIUZYG&_nc_oc=Adl_qXff1CEGt0se10Gr_WnkMdoxrP8BdDwikNq-QRM_-INFVKibKRMLi88UxTbyoaI&_nc_zt=23&_nc_ht=scontent.fpnh24-1.fna&_nc_gid=1xcv7TCy4Xz7x-MrXY02NA&oh=00_AfKqqB2ogKbr8Xx4jXYUVxyOyxazDjJyJSFrwfQG78sMkg&oe=68308440" alt="Poster Design">
+                            <div class="graphic-category">Poster</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="graphic-card" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="500">
+                        <div class="graphic-img">
+                            <img src="https://scontent.fpnh24-1.fna.fbcdn.net/v/t39.30808-6/499186694_723685140051262_2980881705982147774_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=SwRpqK1bCc4Q7kNvwHHkwzC&_nc_oc=Adk-ZcgeWzdKPcpxJaVUGsUBCN81hzxcuvcTj7ES71WaqPTEJM5pyXNrcudUGCLmIoA&_nc_zt=23&_nc_ht=scontent.fpnh24-1.fna&_nc_gid=6eZ4vC-ki6LJLZC6SOyMZg&oh=00_AfKwkQC21fD51NiKEGhGVtFhild2I9rSsMIPeuhUN_hiyg&oe=68305040" alt="Poster Design">
+                            <div class="graphic-category">Poster</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 7 -->
+                    <div class="graphic-card" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="600">
+                        <div class="graphic-img">
+                            <img src="https://scontent.fpnh24-1.fna.fbcdn.net/v/t39.30808-6/499048697_723685136717929_4012742140812622853_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=gGtxE_aHWmAQ7kNvwEY3pEF&_nc_oc=Adm0WN_eWrBApyCbWC1j7CkunsLOSvfzRfXMcB4NPKUfCaIQC2c1yqtCjkD_a3QRBLk&_nc_zt=23&_nc_ht=scontent.fpnh24-1.fna&_nc_gid=HwlgUUCResTJ3aswUJkQrA&oh=00_AfKkfrPM2JDkYkdXrmc5W_wydm6WeitE3ye1xh2KAJMmsg&oe=683068A6" alt="Poster Design">
+                            <div class="graphic-category">Poster</div>
+                        </div>
+                    </div>
+
+                     <div class="graphic-card" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="700">
+                        <div class="graphic-img">
+                            <img src="https://scontent.fpnh24-1.fna.fbcdn.net/v/t39.30808-6/499133715_723700846716358_1849787651303914523_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=mCJ71DJ03-MQ7kNvwEW6IJo&_nc_oc=AdnbVR7AdTA_29ZGJG5ya1mykD22l2gimBYkMZU5_xDedVVER7ReZdTXuyKHfwKVKF0&_nc_zt=23&_nc_ht=scontent.fpnh24-1.fna&_nc_gid=W8MiR6RF2XAKEFh66Hw22w&oh=00_AfK4rxiivIgFDqfumVBhaLfN8JMkE2MgFChuU_B6ZlKMAw&oe=6830787A" alt="Poster Design">
+                            <div class="graphic-category">Poster</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox Modal -->
+        <div class="lightbox" id="lightbox">
+            <img src="" alt="Lightbox Image" class="lightbox-img" id="lightbox-img">
+            <span class="lightbox-close" id="lightbox-close"><i class="fas fa-times"></i></span>
+        </div>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up" data-text="CONTACT">
+                    <h2>Contact Me</h2>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info" data-aos="fade-right" data-aos-duration="1000">
+                        <h3>Get In Touch</h3>
+                        <p>Feel free to contact me for any work or suggestions. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+                        <div class="contact-details">
+                            <div>
+                                <i class="fas fa-map-marker-alt y-alt"></i>
+                                <span>Phnom Penh, Cambodia</span>
+                            </div>
+                            <div>
+                                <i class="fas fa-envelope"></i>
+                                <span>tonyja2460@gmail.com</span>
+                            </div>
+                            <div>
+                                <i class="fas fa-phone"></i>
+                                <span>+855 15 811 660</span>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="https://github.com/Yangchanthorony/project"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-form" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type personally" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <p>© 2024 My Portfolio. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+        <!-- AOS JS -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            // Initialize AOS
+            AOS.init({
+                once: false,
+                mirror: true,
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 });
             });
-        });
-        
-        // Animate skill progress bars
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                document.querySelectorAll('.skill-progress span').forEach(span => {
-                    const width = span.getAttribute('data-width');
-                    span.style.width = width;
+            
+            // Animate skill progress bars
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(function() {
+                    document.querySelectorAll('.skill-progress span').forEach(span => {
+                        const width = span.getAttribute('data-width');
+                        span.style.width = width;
+                    });
+                }, 1000);
+
+                // Theme toggle functionality
+                const themeToggle = document.querySelector('.theme-toggle');
+                const body = document.body;
+                const themeIcon = themeToggle.querySelector('i');
+
+                // Check for saved theme preference
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                body.setAttribute('data-theme', savedTheme);
+                themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = body.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    body.setAttribute('data-theme', newTheme);
+                    themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                    
+                    localStorage.setItem('theme', newTheme);
                 });
-            }, 1000);
 
-            // Theme toggle functionality
-            const themeToggle = document.querySelector('.theme-toggle');
-            const body = document.body;
-            const themeIcon = themeToggle.querySelector('i');
+                // Lightbox functionality
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-img');
+                const lightboxClose = document.getElementById('lightbox-close');
+                const graphicCards = document.querySelectorAll('.graphic-card');
 
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            body.setAttribute('data-theme', savedTheme);
-            themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                graphicCards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        const imgSrc = card.querySelector('img').src;
+                        lightboxImg.src = imgSrc;
+                        lightbox.classList.add('active');
+                    });
+                });
 
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = body.getAttribute('data-theme');
-                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                
-                body.setAttribute('data-theme', newTheme);
-                themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-                
-                localStorage.setItem('theme', newTheme);
+                lightboxClose.addEventListener('click', () => {
+                    lightbox.classList.remove('active');
+                });
+
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) {
+                        lightbox.classList.remove('active');
+                    }
+                });
             });
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
